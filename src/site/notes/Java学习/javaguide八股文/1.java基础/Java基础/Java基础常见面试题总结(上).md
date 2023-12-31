@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/java/javaguide/1-java/java/java/","dgPassFrontmatter":true}
+{"dg-publish":true,"dg-permalink":"Java基础常见面试题总结(上)","permalink":"/Java基础常见面试题总结(上)/","dgPassFrontmatter":true}
 ---
 
 
