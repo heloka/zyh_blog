@@ -1,5 +1,5 @@
 ---
-{"title":"Java 语法糖详解","category":"Java","tag":"Java基础","head":"meta,[object Object],meta,[object Object]","dg-publish":true,"permalink":"/java/javaguide/1-java/java/java/","dgPassFrontmatter":true}
+{"title":"Java 语法糖详解","dg-permalink":"Java 语法糖详解","category":"Java","tag":"Java基础","head":"meta,[object Object],meta,[object Object]","dg-publish":true,"permalink":"/Java 语法糖详解/","dgPassFrontmatter":true}
 ---
 
 
