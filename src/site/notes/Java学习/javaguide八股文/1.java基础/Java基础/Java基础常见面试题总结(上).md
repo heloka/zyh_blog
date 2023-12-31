@@ -19,26 +19,26 @@
 ### JVM vs JDK vs JRE
 #### JVM
 Java 虚拟机（JVM）是运行 Java 字节码的虚拟机。JVM 有针对不同系统的特定实现（Windows，Linux，macOS），目的是使用相同的字节码，它们都会给出相同的结果。字节码和不同系统的 JVM 实现是 Java 语言“一次编译，随处可以运行”的关键所在。
-![运行在 Java 虚拟机之上的编程语言](https://oss.javaguide.cn/github/javaguide/java/basis/java-virtual-machine-program-language-os.png)
+![8yllr](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251998.png)
 **JVM 并不是只有一种！只要满足 JVM 规范，每个公司、组织或者个人都可以开发自己的专属 JVM。** 也就是说我们平时接触到的 HotSpot VM 仅仅是是 JVM 规范的一种实现而已。
 除了我们平时最常用的 HotSpot VM 外，还有 J9 VM、Zing VM、JRockit VM 等 JVM 。维基百科上就有常见 JVM 的对比：[Comparison of Java virtual machines](https://en.wikipedia.org/wiki/Comparison_of_Java_virtual_machines) ，感兴趣的可以去看看。并且，你可以在 [Java SE Specifications](https://docs.oracle.com/javase/specs/index.html) 上找到各个版本的 JDK 对应的 JVM 规范。
-![](https://oss.javaguide.cn/github/javaguide/java/basis/JavaSeSpecifications.jpg)
+![pld5q](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251999.jpg)
 #### JDK 和 JRE
 JDK（Java Development Kit），它是功能齐全的 Java SDK，是提供给开发者使用的，能够创建和编译 Java 程序。他包含了 JRE，同时还包含了编译 java 源码的编译器 javac 以及一些其他工具比如 javadoc（文档注释工具）、jdb（调试器）、jconsole（基于 JMX 的可视化监控⼯具）、javap（反编译工具）等等。
 JRE（Java Runtime Environment） 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有内容的集合，主要包括 Java 虚拟机（JVM）、Java 基础类库（Class Library）。
 也就是说，**JRE 是 Java 运行时环境，仅包含 Java 应用程序的运行时环境和必要的类库**。而 JDK 则包含了 JRE，同时还包括了 javac、javadoc、jdb、jconsole、javap 等工具，可以用于 Java 应用程序的开发和调试。如果需要进行 Java 编程工作，比如编写和编译 Java 程序、使用 Java API 文档等，就需要安装 JDK。而对于某些需要使用 Java 特性的应用程序，如 JSP 转换为 Java Servlet、使用反射等，也需要 JDK 来编译和运行 Java 代码。因此，即使不进行 Java 应用程序的开发工作，也有可能需要安装 JDK。
-![JDK 包含 JRE](https://oss.javaguide.cn/github/javaguide/java/basis/jdk-include-jre.png)
+![79ad0](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251000.png)
 ### 什么是字节码?采用字节码的好处是什么?
 在 Java 中，JVM 可以理解的代码就叫做字节码（即扩展名为 `.class` 的文件），它不面向任何特定的处理器，只面向虚拟机。Java 语言通过字节码的方式，在**一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点**。所以， Java 程序运行时相对来说还是高效的（不过，和 C++，Rust，Go 等语言还是有一定差距的），而且，由于字节码并不针对一种特定的机器，因此，Java 程序无须重新编译便可在多种不同操作系统的计算机上运行。
 **Java 程序从源代码到运行的过程如下图所示**：
-![Java程序转变为机器代码的过程](https://oss.javaguide.cn/github/javaguide/java/basis/java-code-to-machine-code.png)
+![16yo9](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251001.png)
 我们需要格外注意的是 `.class->机器码` 这一步。在这一步 JVM 类加载器首先加载字节码文件，然后通过解释器逐行解释执行，这种方式的执行速度会相对比较慢。而且，有些方法和代码块是经常需要被调用的(也就是所谓的热点代码)，所以后面引进了 JIT（just-in-time compilation） 编译器，而 JIT 属于运行时编译。当 JIT 编译器完成第一次编译后，其会将字节码对应的机器码保存下来，下次可以直接使用。而我们知道，机器码的运行效率肯定是高于 Java 解释器的。这也解释了我们为什么经常会说 **Java 是编译与解释共存的语言** 。
-![Java程序转变为机器代码的过程](https://oss.javaguide.cn/github/javaguide/java/basis/java-code-to-machine-code-with-jit.png)
+![3ojrh](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251002.png)
 > HotSpot 采用了惰性评估(Lazy Evaluation)的做法，根据二八定律，消耗大部分系统资源的只有那一小部分的代码（热点代码），而这也就是 JIT 所需要编译的部分。JVM 会根据代码每次被执行的情况收集信息并相应地做出一些优化，因此执行的次数越多，它的速度就越快。JDK 9 引入了一种新的编译模式 AOT(Ahead of Time Compilation)，它是直接将字节码编译成机器码，这样就避免了 JIT 预热等各方面的开销。JDK 支持分层编译和 AOT 协作使用。
 JDK、JRE、JVM、JIT 这四者的关系如下图所示。
-![JDK、JRE、JVM、JIT 这四者的关系](https://oss.javaguide.cn/github/javaguide/java/basis/jdk-jre-jvm-jit.png)
+![oy0u0](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251003.png)
 下面这张图是 JVM 的大致结构模型。
-![JVM 的大致结构模型](https://oss.javaguide.cn/github/javaguide/java/basis/jvm-rough-structure-model.png)
+![z6n7h](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251004.jpg)
 ### 为什么不全部使用 AOT 呢？
 AOT 可以提前编译节省启动时间，那为什么不全部使用这种编译方式呢？
 这和 Java 语言的动态特性有千丝万缕的联系了。举个例子，CGLIB 动态代理使用的是 ASM 技术，而这种技术大致原理是运行时直接在内存中生成并加载修改后的字节码文件也就是 `.class` 文件，如果全部使用 AOT 提前编译，也就不能使用 ASM 技术了。为了支持类似的动态特性，所以选择使用 JIT 即时编译器。
@@ -47,7 +47,7 @@ AOT 可以提前编译节省启动时间，那为什么不全部使用这种编�
 我们可以将高级编程语言按照程序的执行方式分为两种：
 - **编译型**：[编译型语言](https://zh.wikipedia.org/wiki/%E7%B7%A8%E8%AD%AF%E8%AA%9E%E8%A8%80) 会通过[编译器](https://zh.wikipedia.org/wiki/%E7%B7%A8%E8%AD%AF%E5%99%A8)将源代码一次性翻译成可被该平台执行的机器码。一般情况下，编译语言的执行速度比较快，开发效率比较低。常见的编译性语言有 C、C++、Go、Rust 等等。
 - **解释型**：[解释型语言](https://zh.wikipedia.org/wiki/%E7%9B%B4%E8%AD%AF%E8%AA%9E%E8%A8%80)会通过[解释器](https://zh.wikipedia.org/wiki/直譯器)一句一句的将代码解释（interpret）为机器代码后再执行。解释型语言开发效率比较快，执行速度比较慢。常见的解释性语言有 Python、JavaScript、PHP 等等。
-![编译型语言和解释型语言](https://oss.javaguide.cn/github/javaguide/java/basis/compiled-and-interpreted-languages.png)
+![vw93g](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251005.png)
 > 为了改善编译语言的效率而发展出的[即时编译](https://zh.wikipedia.org/wiki/即時編譯)技术，已经缩小了这两种语言间的差距。这种技术混合了编译语言与解释型语言的优点，它像编译语言一样，先把程序源代码编译成[字节码](https://zh.wikipedia.org/wiki/字节码)。到执行期时，再将字节码直译，之后执行。[Java](https://zh.wikipedia.org/wiki/Java)与[LLVM](https://zh.wikipedia.org/wiki/LLVM)是这种技术的代表产物。
  相关阅读：[基本功 | Java 即时编译器原理解析及实践](https://tech.meituan.com/2020/10/22/java-jit-practice-in-meituan.html)
 
@@ -71,7 +71,7 @@ AOT 可以提前编译节省启动时间，那为什么不全部使用这种编�
 > 3.  OpenJDK 更新频率更快。Oracle JDK 一般是每 6 个月发布一个新版本，而 OpenJDK 一般是每 3 个月发布一个新版本。（现在你知道为啥 Oracle JDK 更稳定了吧，先在 OpenJDK 试试水，把大部分问题都解决掉了才在 Oracle JDK 上发布）
 >
 > 基于以上这些原因，OpenJDK 还是有存在的必要的！
-![oracle jdk release cadence](https://oss.javaguide.cn/github/javaguide/java/basis/oracle-jdk-release-cadence.jpg)
+![bpnfz](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251006.jpg)
 **Oracle JDK 和 OpenJDK 如何选择？**
 建议选择 OpenJDK 或者基于 OpenJDK 的发行版，比如 AWS 的 Amazon Corretto，阿里巴巴的 Alibaba Dragonwell。
 🌈 拓展一下：
@@ -86,12 +86,12 @@ AOT 可以提前编译节省启动时间，那为什么不全部使用这种编�
 ## 基本语法
 ### 注释有哪几种形式？
 Java 中的注释有三种：
-![Java 注释类型总结](https://oss.javaguide.cn/github/javaguide/java/basis/java-annotation-types.png)
+![424ew](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251007.png)
 1. **单行注释**：通常用于解释方法内某单行代码的作用。
 2. **多行注释**：通常用于解释一段代码的作用。
 3. **文档注释**：通常用于生成 Java 开发文档。
 用的比较多的还是单行注释和文档注释，多行注释在实际开发中使用的相对较少。
-![](https://oss.javaguide.cn/github/javaguide/java/basis/image-20220714112336911.png)
+![p6m33](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251008.png)
 在我们编写代码的时候，如果代码量比较少，我们自己或者团队其他成员还可以很轻易地看懂代码，但是当项目结构一旦复杂起来，我们就需要用到注释了。注释并不会执行(编译器在编译代码之前会把代码中的所有注释抹掉,字节码中不保留注释)，是我们程序员写给自己看的，注释是你的代码说明书，能够帮助看代码的人快速地理清代码之间的逻辑关系。因此，在写程序的时候随手加上注释是一个非常好的习惯。
 《Clean Code》这本书明确指出：
 > **代码的注释不是越详细越好。实际上好的代码本身就是注释，我们要尽量规范和美化自己的代码来减少不必要的注释。**
@@ -153,7 +153,7 @@ static final int hash(Object key) {
 在 Java 代码里使用 `<<`、 `>>` 和`>>>`转换成的指令码运行起来会更高效些。
 掌握最基本的移位运算符知识还是很有必要的，这不光可以帮助我们在代码中使用，还可以帮助我们理解源码中涉及到移位运算符的代码。
 Java 中有三种移位运算符：
-![Java 移位运算符总结](https://oss.javaguide.cn/github/javaguide/java/basis/shift-operator.png)
+![grb97](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251009.png)
 - `<<` :左移运算符，向左移若干位，高位丢弃，低位补零。`x << 1`,相当于 x 乘以 2(不溢出的情况下)。
 - `>>` :带符号右移，向右移若干位，高位补符号位，低位丢弃。正数高位补 0,负数高位补 1。`x >> 1`,相当于 x 除以 2。
 - `>>>` :无符号右移，忽略符号位，空位都以 0 补齐。
@@ -261,7 +261,7 @@ Java 中有 8 种基本数据类型，分别为：
 2. `char a = 'h'`char :单引号，`String a = "hello"` :双引号。
 这八种基本类型都有对应的包装类分别为：`Byte`、`Short`、`Integer`、`Long`、`Float`、`Double`、`Character`、`Boolean` 。
 ### 基本类型和包装类型的区别？
-![基本类型 vs 包装类型](https://oss.javaguide.cn/github/javaguide/java/basis/primitive-type-vs-packaging-type.png)
+![vyj00](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251010.png)
 - **用途**：除了定义一些常量和局部变量之外，我们在其他地方比如方法参数、对象属性中很少会使用基本类型来定义变量。并且，包装类型可用于泛型，而基本类型不可以。
 - **存储方式**：基本数据类型的局部变量存放在 Java 虚拟机栈中的局部变量表中，基本数据类型的成员变量（未被 `static` 修饰 ）存放在 Java 虚拟机的堆中。包装类型属于对象类型，我们知道几乎所有对象实例都存在于堆中。
 - **占用空间**：相比于包装类型（对象类型）， 基本数据类型占用的空间往往非常小。
@@ -338,7 +338,7 @@ System.out.println(i1==i2);
 `Integer i1=40` 这一行代码会发生装箱，也就是说这行代码等价于 `Integer i1=Integer.valueOf(40)` 。因此，`i1` 直接使用的是缓存中的对象。而`Integer i2 = new Integer(40)` 会直接创建新的对象。
 因此，答案是 `false` 。你答对了吗？
 记住：**所有整型包装类对象之间值的比较，全部使用 equals 方法比较**。
-![](https://oss.javaguide.cn/github/javaguide/up-1ae0425ce8646adfb768b5374951eeb820d.png)
+![ccsil](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251011.png)
 ### 自动装箱与拆箱了解吗？原理是什么？
 **什么是自动拆装箱？**
 - **装箱**：将基本类型用它们对应的引用类型包装起来；
@@ -427,7 +427,7 @@ System.out.println(l + 1 == Long.MIN_VALUE); // true
 相对于常规整数类型的运算来说，`BigInteger` 运算的效率会相对较低。
 ## 变量
 ### 成员变量与局部变量的区别？
-![成员变量 vs 局部变量](https://oss.javaguide.cn/github/javaguide/java/basis/member-var-vs-local-var.png)
+![8ekr7](https://cdn.jsdelivr.net/gh/heloka/cdn_img/img/202312311251012.png)
 - **语法形式**：从语法形式上看，成员变量是属于类的，而局部变量是在代码块或方法中定义的变量或是方法的参数；成员变量可以被 `public`,`private`,`static` 等修饰符所修饰，而局部变量不能被访问控制修饰符及 `static` 所修饰；但是，成员变量和局部变量都能被 `final` 所修饰。
 - **存储方式**：从变量在内存中的存储方式来看，如果成员变量是使用 `static` 修饰的，那么这个成员变量是属于类的，如果没有使用 `static` 修饰，这个成员变量是属于实例的。而对象存在于堆内存，局部变量则存在于栈内存。
 - **生存时间**：从变量在内存中的生存时间上看，成员变量是对象的一部分，它随着对象的创建而存在，而局部变量随着方法的调用而自动生成，随着方法的调用结束而消亡。
