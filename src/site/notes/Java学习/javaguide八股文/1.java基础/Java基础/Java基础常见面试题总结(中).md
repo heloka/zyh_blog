@@ -1,5 +1,5 @@
 ---
-{"title":"Java基础常见面试题总结(中)","category":"Java","tags":["Java基础"],"head":"meta,[object Object],meta,[object Object]","dg-publish":true,"permalink":"/java/javaguide/1-java/java/java/","dgPassFrontmatter":true}
+{"title":"Java基础常见面试题总结(中)","dg-permalink":"Java基础常见面试题总结(中)","category":"Java","tags":["Java基础"],"head":"meta,[object Object],meta,[object Object]","dg-publish":true,"permalink":"/Java基础常见面试题总结(中)/","dgPassFrontmatter":true}
 ---
 
 
