@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/Garden Home/"}
+{"dg-publish":true,"permalink":"/Garden Home/","tags":["gardenEntry"]}
 ---
 
 ## 1. 欢迎来到我的数字花园
