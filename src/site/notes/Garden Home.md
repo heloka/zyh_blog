@@ -31,13 +31,5 @@
 
 本网站主要涉及到一些本人编写的文章。具体列表如下。
 
--   [Docker](https://www.aming.tech/Docker/Docker/)
--   [操作系统](https://www.aming.tech/SYSTEM/)
--   [数据库](https://www.aming.tech/database/)
--   [好用的软件](https://www.aming.tech/soft/Soft/)
--   [PostgreSQL](https://www.aming.tech/PostgreSQL/PostgreSQL/)
--   [TypeScript](https://www.aming.tech/TypeScript/TypeScript/)
--   [Obsidian](https://www.aming.tech/Obsidian/Obsidian/)
 
 ## 4. 网站最近创建的新文章
-c
