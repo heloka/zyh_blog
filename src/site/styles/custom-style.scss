@@ -13,3 +13,15 @@ body {
     // max-width: 1000px;
     
 }
+/* 在 custom-style.scss 文件中 */
+
+/* 增加内容的宽度 */
+.content {
+    max-width: 900px; /* 调整为适当的宽度 */
+}
+
+/* 缩小侧边栏的宽度 */
+.sidebar {
+    max-width: 200px; /* 调整为适当的宽度 */
+}
+
