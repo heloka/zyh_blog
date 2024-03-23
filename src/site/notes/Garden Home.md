@@ -2,9 +2,9 @@
 {"dg-publish":true,"permalink":"/Garden Home/","tags":["gardenEntry"]}
 ---
 
-## 1. 欢迎来到我的数字花园
+# 1. 欢迎来到我的数字花园
 
-### 1.1. 说在前面的话
+## 1.1. 说在前面的话
 
 折腾了好几天，终于找到了满足我全部幻想的笔记软件 [Obsidian](https://www.aming.tech/Obsidian/Obsidian/) 。这个笔记软件功能能够满足我对笔记软件的所有幻想。
 
