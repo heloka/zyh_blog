@@ -28,20 +28,46 @@ body {
     min-width: 25px;
     display: flex;
     z-index: 3;
-    max-width: 210px; /* 将 max-width 调整为原来的 60% */
+    max-width: 350px; /* 将 max-width 调整为原来的 60% */
 }
-
-
-
-.sidebar-container {
-    padding-right: 10px; /* 根据您的具体需求调整 padding */
-    width: 60%; /* 将整体宽度调整为原来的 60% */
+.filetree-sidebar {
+    margin: 0;
+    z-index: 10;
+    padding: 10px;
+    top: 0px;
+    left: 0;
+    position: fixed;
+    height: 100%;
+    background-color: var(--background-secondary);
+    color: var(--text-muted);
     overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 90%; /* 保持高度为100% */
+    width: 200px; /* 将宽度调整为原来宽度的一半 */
+    h1 {
+        font-size: 32px !important;
+    }
+    @media (max-width: 800px) {
+        h1 {
+            display: none;
+        }
+
+        .search-button {
+            width: 100%;
+            margin: 2px;
+        }
+    }
 }
+
+
+
+// .sidebar-container {
+//     padding-right: 10px; /* 根据您的具体需求调整 padding */
+//     width: 60%; /* 将整体宽度调整为原来的 60% */
+//     overflow-y: auto;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-start;
+//     height: 90%; /* 保持高度为100% */
+// }
 
 
 
