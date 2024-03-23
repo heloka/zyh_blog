@@ -17,22 +17,31 @@ body {
 
 /* 增加内容的宽度 */
 .content {
-    max-width: 750px; /* 调整为适当的宽度 */
+    max-width: 800px; /* 调整为适当的宽度 */
 }
 
-/* 缩小侧边栏的宽度 */
-// .sidebar {
-//     max-width: 300px; /* 调整为适当的宽度 */
-// }
-/* 在 custom-style.scss 文件中 */
+.sidebar {
+    position: fixed;
+    top: 75px;
+    right: 0;
+    height: 100%;
+    min-width: 25px;
+    display: flex;
+    z-index: 3;
+    max-width: 210px; /* 将 max-width 调整为原来的 60% */
+}
 
-// .sidebar-container {
-//     width: 100px; /* 调整为适当的宽度 */
-//     overflow-y: auto;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: flex-start;
-//     height: 95%;
-// }
+
+
+.sidebar-container {
+    padding-right: 10px; /* 根据您的具体需求调整 padding */
+    width: 60%; /* 将整体宽度调整为原来的 60% */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 90%; /* 保持高度为100% */
+}
+
 
 
