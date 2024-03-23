@@ -17,22 +17,22 @@ body {
 
 /* 增加内容的宽度 */
 .content {
-    max-width: 900px; /* 调整为适当的宽度 */
+    max-width: 800px; /* 调整为适当的宽度 */
 }
 
 /* 缩小侧边栏的宽度 */
 .sidebar {
-    max-width: 30%; /* 调整为适当的宽度 */
+    max-width: 250px; /* 调整为适当的宽度 */
 }
 /* 在 custom-style.scss 文件中 */
 
-.sidebar-container {
-    width: 100px; /* 调整为适当的宽度 */
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 95%;
-}
+// .sidebar-container {
+//     width: 100px; /* 调整为适当的宽度 */
+//     overflow-y: auto;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-start;
+//     height: 95%;
+// }
 
 
