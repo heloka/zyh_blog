@@ -20,7 +20,33 @@ body {
     max-width: 800px; /* 调整为适当的宽度 */
 }
 .cm-s-obsidian{
-    margin-left: 220px;
+    margin-left: 200px;
+}
+.filetree-sidebar {
+    margin: 0;
+    z-index: 10;
+    padding: 10px;
+    top: 0px;
+    left: 0;
+    position: fixed;
+    height: 100%;
+    background-color: var(--background-secondary);
+    color: var(--text-muted);
+    overflow-y: auto;
+    width: 200px; /* 将宽度调整为原来宽度的一半 */
+    h1 {
+        font-size: 32px !important;
+    }
+    @media (max-width: 800px) {
+        h1 {
+            display: none;
+        }
+
+        .search-button {
+            width: 100%;
+            margin: 2px;
+        }
+    }
 }
 
 // .sidebar-container {
