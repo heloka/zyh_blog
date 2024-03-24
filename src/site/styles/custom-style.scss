@@ -17,20 +17,21 @@ body {
 
 
 .content {
-padding-right: 90px;
 max-width: 900px;
-font-size: var(--content-font-size);
-font-text-size: 1.4rem;
+// font-size: var(--content-font-size);
+// font-text-size: 1.4rem;
 
 }
 /* 增加内容的宽度 */
 // .content {
 //     max-width: 800px; /* 调整为适当的宽度 */
 // }
-// .cm-s-obsidian{
-//     margin-left: 210px;
-//     margin-right: 240px;
-// }
+ .cm-s-obsidian{
+    padding-right: 90px;
+
+    // margin-left: 210px;
+    // margin-right: 240px;
+ }
 // .filetree-sidebar {
 //     margin: 0;
 //     z-index: 10;
