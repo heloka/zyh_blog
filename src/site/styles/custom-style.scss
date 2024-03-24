@@ -17,7 +17,6 @@ body {
 
 
 .content {
-max-width: 850px;
 
 }
 /* 增加内容的宽度 */
@@ -25,6 +24,7 @@ max-width: 850px;
 //     max-width: 800px; /* 调整为适当的宽度 */
 // }
  .cm-s-obsidian{
+    max-width: 850px; 
     padding-right: 80px;
 
     // margin-left: 210px;
