@@ -7,6 +7,7 @@
 - 讲讲常见的限流算法有哪些？
 **内容参考**：
 - [[Java学习/javaguide八股文/9.高可用/服务限流详解！！\|服务限流详解！！]]
+- [[Java学习/微服务核心/SpringCloudAlibaba#3 4 Sentinel流量控制规则\|SpringCloudAlibaba#3 4 Sentinel流量控制规则]]
 
 # Sentinel 介绍
 ## Sentinel 基本概念
