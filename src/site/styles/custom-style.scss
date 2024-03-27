@@ -32,7 +32,10 @@ body {
  //     max-width: 320px; /* 调整为适当的宽度 */
  // }
 /* 在 custom-style.scss 文件中 */
-
+.sidebar{
+    margin-right: 20px;
+    width: 290px;
+}
  .sidebar-container {
      width: 290px; /* 调整为适当的宽度 */
      overflow-y: hidden;
