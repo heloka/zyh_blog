@@ -11,9 +11,7 @@ body {
     //   color: black;
     //  }
 }
-element.style{
-    width: 300px;
-}
+
 .content {
     max-width: 800px;
     margin: auto;
@@ -42,7 +40,7 @@ element.style{
     min-height: 290px;
 }
  .sidebar .graph #link-graph {
-     height: 300px;
+     height: 270px;
      width: 270px;
  }
 // .filetree-sidebar {
@@ -189,5 +187,11 @@ element.style{
   }
 .graph .graph-title {
     Display: none;
+}
+element.style{
+    width: 300px;
+}
+body:not(.native-scrollbars) {
+    overflow: hidden;
 }
 
