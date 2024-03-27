@@ -12,7 +12,7 @@ body {
     //  }
 }
 .content {
-    max-width: 750px;
+    max-width: 800px;
     margin: auto;
     font-size: 18px;
     line-height: 1.5;
@@ -27,7 +27,7 @@ body {
 /* 在 custom-style.scss 文件中 */
 
  .sidebar-container {
-    width: 150px; /* 调整为适当的宽度 */
+     width: 150px; /* 调整为适当的宽度 */
      overflow-y: auto;
      display: flex;
      flex-direction: column;
@@ -177,6 +177,6 @@ body {
 .markdown-rendered table {
     width: 100%;
   }
- .sidebar .graph #link-graph {
-     height: 250px;
- }
+ // .sidebar .graph #link-graph {
+ //     height: 250px;
+ // }
