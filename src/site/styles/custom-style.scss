@@ -11,6 +11,9 @@ body {
     //   color: black;
     //  }
 }
+element.style{
+    width: 300px;
+}
 .content {
     max-width: 800px;
     margin: auto;
@@ -21,9 +24,9 @@ body {
 }
 
 /* 缩小侧边栏的宽度 */
- .sidebar {
-     max-width: 320px; /* 调整为适当的宽度 */
- }
+ // .sidebar {
+ //     max-width: 320px; /* 调整为适当的宽度 */
+ // }
 /* 在 custom-style.scss 文件中 */
 
  .sidebar-container {
@@ -32,10 +35,10 @@ body {
      display: flex;
      flex-direction: column;
      justify-content: flex-start;
-     height: 87%;
+     height: 100%;
  }
  .sidebar .graph #link-graph {
-     height: 280px;
+     height: 300px;
  }
 // .filetree-sidebar {
 //     height: 100%;
@@ -86,7 +89,7 @@ body {
 #link-graph {
     background-color: var(--background-secondary);
     margin-bottom: 20px;
-    border-radius: 0px 0 4px 4px;
+    border-radius: 10px;
     padding: 16px;
     width: fit-content;
 }
