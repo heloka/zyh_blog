@@ -19,7 +19,21 @@ body {
     margin-top: 60px;
     position: relative;
 }
-    
+
+/* 缩小侧边栏的宽度 */
+ .sidebar {
+     max-width: 200px; /* 调整为适当的宽度 */
+ }
+/* 在 custom-style.scss 文件中 */
+
+ .sidebar-container {
+    width: 150px; /* 调整为适当的宽度 */
+     overflow-y: auto;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-start;
+     height: 87%;
+ }
 // .filetree-sidebar {
 //     height: 100%;
 //     width: 320px;
