@@ -28,7 +28,7 @@ body {
 /* 在 custom-style.scss 文件中 */
 
  .sidebar-container {
-     // width: 150px; /* 调整为适当的宽度 */
+     width: 290px; /* 调整为适当的宽度 */
      overflow-y: auto;
      display: flex;
      flex-direction: column;
@@ -188,10 +188,7 @@ body {
 .graph .graph-title {
     Display: none;
 }
-element.style{
-    width: 300px;
-}
-body:not(.native-scrollbars) {
-    overflow: hidden;
-}
+// body:not(.native-scrollbars) {
+//     overflow: hidden;
+// }
 
