@@ -37,8 +37,13 @@ element.style{
      justify-content: flex-start;
      height: 100%;
  }
+.sidebar .graph{
+    width: 320px;
+    min-height: 290px;
+}
  .sidebar .graph #link-graph {
      height: 300px;
+     width: 290px;
  }
 // .filetree-sidebar {
 //     height: 100%;
@@ -185,3 +190,7 @@ element.style{
 .graph .graph-title {
     Display: none;
 }
+body:not(.native-scrollbars) {
+    overflow: hidden;
+}
+
