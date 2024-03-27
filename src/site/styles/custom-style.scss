@@ -4,162 +4,27 @@ body {
       IT WILL TAKE PRECEDENCE OVER THE STYLING IN THE STYLE.CSS FILE.
    ***/
     //  background-color: white;
-    //  .content {
-    //   font-size: 14px;
-    //  }
+      .content {
+    font-size: 21px;
+    max-width: 750px;
+
+    mjx-math {
+  font-size: 130% !important;
+}
+    h1{
+        font-size: 50px;
+    }
+    h2{
+        font-size: 40px;
+    }
+    h3{
+        font-size: 30px;
+    }
+    h4{
+        font-size: 20px;
+    }
+      }
     //  h1 {
     //   color: black;
     //  }
 }
-.content {
-    max-width: 750px;
-    margin: auto;
-    font-size: 16px;
-    line-height: 1.5;
-    margin-top: 60px;
-    position: relative;
-}
-    
-.filetree-sidebar {
-    height: 100%;
-    width: 320px;
-    border-right: 1px solid #e5e5e5;
-    h1 {
-        font-size: 32px !important;
-        text-align: left !important;
-        padding-left: 32px;
-    }
-}
-      
-.notelink {
-    padding: 4px 0 4px 0px;
-    margin-left: 9px;
-    border-left: 1px solid #d2d2d2;
-}
-.filename {
-    font-size: 14px;
-    color: #333333;
-}   
-.notelink.active-note {
-    transform: translateX(0px);
-    border-radius: 0px 6px 6px 0px;
-    border-left: 3px solid var(--text-accent);
-    margin-right: 8px
-}
-.foldername-wrapper {
-    margin: 4px 0 4px 0px;
-}
-.foldername {
-    font-size: 14px;
-}   
-.graph {
-    .graph-title-container {
-        display: inline;
-        width: 100%;
-    }
-    .graph-title {
-        width: fit-content;
-        background-color: var(--background-secondary);
-        margin: 10px 0 0 0;
-        padding: 8px 16px;
-        font-size: 1.2rem !important;
-        border-radius: 4px 4px 0 0;
-        color: var(--h6-color);
-    }
-}
-#link-graph {
-    background-color: var(--background-secondary);
-    margin-bottom: 20px;
-    border-radius: 0px 0 4px 4px;
-    padding: 16px;
-    width: fit-content;
-}
-    
-.toc {
-    padding-right: 5px;
-    padding: 0px;
-    background-color: var(--background-primary);
-    margin-left: 12px;
-    border-radius: 4px;
-    ol {
-        list-style: none;
-        padding-left: 16px;
-        border-left: 3px solid var(--background-secondary);
-        margin-bottom: 0px;
-        margin-top: 0px;
-    }
-
-    & > ol {
-        padding-left: 0;
-        border-left: none;
-    }
-}
-.toc-container {
-    border-left: 2px solid var(--text-accent);
-    font-size: 14px;
-}
-.toc-title-container {
-    margin-bottom: 12px;
-}
-
-.backlinks {
-    padding: 12px;
-   .backlink-title {
-        margin: 12px 0;
-    }
-}
-.backlink-list {
-    border-left: 2px solid var(--text-accent);
-    margin-top: 16px;
-}
-.backlink-card {
-    margin-left: 16px;
-}
-.backlink {
-    font-size: 14px;
-}
-.timestamps {
-    gap: 16px;
-    font-size: .9em;
-    div {
-        display: flex;
-        flex-direction: row;
-        gap: 6px;
-        align-items: center;
-    }
-}
-.search-button {
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    min-width: 240px;
-    margin: 10px 24px;
-    border: 1px solid #0e0e0e3d;
-    > i {
-        margin-left: 10px;
-    }
-
-    &:hover {
-        border: 1px solid var(--text-accent);
-    }
-
-    .search-icon {
-        display: flex;
-    }
-}
-.align-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-around;
-}
-.markdown-rendered blockquote{
-    background-color: #f6f6f6;
-    padding: 10px 0px 10px var(--size-4-6);
-    border-radius: 4px;
-}
-.markdown-rendered th {
-    text-align: left !important;
-  }
-.markdown-rendered table {
-    width: 100%;
-  }
