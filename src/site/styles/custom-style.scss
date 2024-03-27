@@ -22,7 +22,7 @@ body {
 
 /* 缩小侧边栏的宽度 */
  .sidebar {
-     max-width: 200px; /* 调整为适当的宽度 */
+     max-width: 320px; /* 调整为适当的宽度 */
  }
 /* 在 custom-style.scss 文件中 */
 
@@ -32,9 +32,11 @@ body {
      display: flex;
      flex-direction: column;
      justify-content: flex-start;
-     height: 70%;
+     height: 87%;
  }
-
+ .sidebar .graph #link-graph {
+     height: 280px;
+ }
 // .filetree-sidebar {
 //     height: 100%;
 //     width: 320px;
@@ -177,3 +179,6 @@ body {
 .markdown-rendered table {
     width: 100%;
   }
+.graph .graph-title {
+    Display: none;
+}
