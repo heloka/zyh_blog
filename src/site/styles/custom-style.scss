@@ -34,6 +34,7 @@ body {
      justify-content: flex-start;
      height: 87%;
  }
+
 // .filetree-sidebar {
 //     height: 100%;
 //     width: 320px;
@@ -177,3 +178,6 @@ body {
 .markdown-rendered table {
     width: 100%;
   }
+ .sidebar .graph #link-graph {
+     height: 250px;
+ }
