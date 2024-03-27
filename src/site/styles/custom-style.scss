@@ -15,6 +15,7 @@ body {
 
 .ctrl-right {
     padding-left: 35px;
+    padding-top: 10px;
 }
 
 .content {
@@ -34,7 +35,7 @@ body {
 
  .sidebar-container {
      width: 290px; /* 调整为适当的宽度 */
-     overflow-y: auto;
+     overflow-y: hidden;
      display: flex;
      flex-direction: column;
      justify-content: flex-start;
