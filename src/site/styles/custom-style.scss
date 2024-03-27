@@ -43,7 +43,7 @@ element.style{
 }
  .sidebar .graph #link-graph {
      height: 300px;
-     width: 290px;
+     width: 270px;
  }
 // .filetree-sidebar {
 //     height: 100%;
@@ -189,8 +189,5 @@ element.style{
   }
 .graph .graph-title {
     Display: none;
-}
-body:not(.native-scrollbars) {
-    overflow: hidden;
 }
 
