@@ -209,7 +209,7 @@ body {
     display: block;
     margin: 0 auto;
 }
-pre{
+pre[class*='language-'] {
   padding: 0 !important;
 }
 .markdown-rendered pre code {
