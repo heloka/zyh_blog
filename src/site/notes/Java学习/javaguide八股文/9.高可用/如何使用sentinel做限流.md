@@ -27,7 +27,7 @@
 
 流量控制在网络传输中是一个常用的概念，它用于调整网络包的发送数据。然而，从系统稳定性角度考虑，在处理请求的速度上，也有非常多的讲究。任意时间到来的请求往往是随机不可控的，而系统的处理能力是有限的。我们需要根据系统的处理能力对流量进行控制。Sentinel 作为一个**调配器**，可以根据需要把随机的请求调整成合适的形状，如下图所示：
 
-![arch](https://sentinelguard.io/docs/zh-cn/img/sentinel-flow-overview.jpg)
+![image/bf7ecf2c0d94c77ae73d7f50c3440ac6_MD5.jpg](/img/user/image/bf7ecf2c0d94c77ae73d7f50c3440ac6_MD5.jpg)
 
 流量控制有以下几个角度:
 
@@ -114,7 +114,7 @@ ps：感觉和计网的概念有点像。
 2.  **冷启动**（`RuleConstant.CONTROL_BEHAVIOR_WARM_UP`）方式。该方式主要用于系统长期处于低水位的情况下，当流量突然增加时，直接把系统拉升到高水位可能瞬间把系统压垮。通过"冷启动"，**让通过的流量缓慢增加**，在一定时间内逐渐增加到阈值上限，给冷系统一个预热的时间，避免冷系统被压垮的情况。具体的例子参见 [WarmUpFlowDemo](https://github.com/alibaba/Sentinel/blob/master/sentinel-demo/sentinel-demo-basic/src/main/java/com/alibaba/csp/sentinel/demo/flow/WarmUpFlowDemo.java)。
 3.  匀速器（`RuleConstant.CONTROL_BEHAVIOR_RATE_LIMITER`）方式。这种方式严格控制了请求通过的间隔时间，也即是让请求以均匀的速度通过，对应的是[[Java学习/javaguide八股文/9.高可用/服务限流详解！！#漏桶算法\|漏桶算法]]。具体的例子参见 [PaceFlowDemo](https://github.com/alibaba/Sentinel/blob/master/sentinel-demo/sentinel-demo-basic/src/main/java/com/alibaba/csp/sentinel/demo/flow/PaceFlowDemo.java)。
 该方式的作用如下图所示：
-![](https://github.com/alibaba/Sentinel/wiki/image/queue.gif)
+![image/2cdb04f32c4808171dcf4f1d7dfe403e_MD5.gif](/img/user/image/2cdb04f32c4808171dcf4f1d7dfe403e_MD5.gif)
 这种方式主要用于处理间隔性突发的流量，例如**消息队列**。想象一下这样的场景，在某一秒有大量的请求到来，而接下来的几秒则处于空闲状态，我们希望系统能够在接下来的空闲期间逐渐处理这些请求，而不是在第一秒直接拒绝多余的请求。
 
 ## 基于调用关系的流量控制
@@ -186,7 +186,7 @@ Sentinel 1.6.0 引入了 `Sentinel API Gateway Adapter Common `模块，此模�
 
 外部请求进入 API Gateway 时会经过 Sentinel 实现的 filter，其中会依次进行 **路由/API 分组匹配**、**请求属性解析**和**参数组装**。Sentinel 会根据配置的网关流控规则来解析请求属性，并依照参数索引顺序组装参数数组，最终传入 `SphU.entry(res, args)` 中。`Sentinel API Gateway Adapter Common` 模块向 Slot Chain 中添加了一个 `GatewayFlowSlot`，专门用来做网关规则的检查。`GatewayFlowSlot` 会从 `GatewayRuleManager` 中提取生成的热点参数规则，根据传入的参数依次进行规则检查。若某条规则不针对请求属性，则会在参数最后一个位置置入预设的常量，达到普通流控的效果。
 
-![image](https://user-images.githubusercontent.com/9434884/58381786-5406f280-7ff4-11e9-9020-016ccaf7ab7d.png)
+![image/a5627f59189c713ef2f1acb6fa153461_MD5.png](/img/user/image/a5627f59189c713ef2f1acb6fa153461_MD5.png)
 
 ## 网关流控控制台
 
