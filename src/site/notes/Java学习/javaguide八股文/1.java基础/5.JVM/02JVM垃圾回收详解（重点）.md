@@ -22,7 +22,7 @@ Java的自动内存管理主要集中在对象内存的回收和分配上。其�
 2. 老生代(Old Generation)
 3. 永久代(Permanent Generation)
 下图所示的 Eden 区、两个 Survivor 区 S0 和 S1 都属于新生代，中间一层属于老年代，最下面一层属于永久代。
-![堆内存结构](https://oss.javaguide.cn/github/javaguide/java/jvm/hotspot-heap-structure.png)
+![image/b4cef63524070616e83ad9a28a51c498_MD5.png](/img/user/image/b4cef63524070616e83ad9a28a51c498_MD5.png)
 注意， **JDK 8 版本之后 PermGen(永久) 已被 Metaspace(元空间) 取代，元空间使用的是直接内存** 。
 - 相关阅读：[[Java学习/javaguide八股文/1.java基础/5.JVM/01Java内存区域详解（重点）#方法区和永久代以及元空间是什么关系呢？ 四星\|01Java内存区域详解（重点）#方法区和永久代以及元空间是什么关系呢？ 四星]]
 
@@ -74,13 +74,13 @@ JDK 6 Update 24 之后，规则变为只要老年代的连续空间大于新生�
 - 当引用失效，计数器就减 1；
 - 任何时候计数器为 0 的对象就是不可能再被使用的。
 **这个方法实现简单，效率高，但是目前主流的虚拟机中并没有选择这个算法来管理内存，其最主要的原因是它很难解决对象之间循环引用的问题。**
-![对象之间循环引用](https://oss.javaguide.cn/github/javaguide/java/jvm/object-circular-reference.png)
+![image/ff8c476fb187c690724e173686c42979_MD5.png](/img/user/image/ff8c476fb187c690724e173686c42979_MD5.png)
 所谓对象之间的相互引用问题，如下面代码所示：除了对象 `objA` 和 `objB` 相互引用着对方之外，这两个对象之间再无任何引用。但是他们因为互相引用对方，导致它们的引用计数器都不为 0，于是引用计数算法无法通知 GC 回收器回收他们。
 
 ### 可达性分析算法 #四星
 这个算法的基本思想就是通过一系列的称为 **“GC Roots”** 的对象作为起点，从这些节点开始向下搜索，节点所走过的路径称为引用链，当一个对象到 GC Roots 没有任何引用链相连的话，则证明此对象是不可用的，需要被回收。
 下图中的 `Object 6 ~ Object 10` 之间虽有引用关系，但它们到 GC Roots 不可达，因此为需要被回收的对象。
-![可达性分析算法](https://oss.javaguide.cn/github/javaguide/java/jvm/jvm-gc-roots.png)
+![image/04369f598101492d82b3524b44d9235f_MD5.png](/img/user/image/04369f598101492d82b3524b44d9235f_MD5.png)
 **哪些对象可以作为 GC Roots 呢？**
 - 虚拟机栈(栈帧中的局部变量表)中引用的对象
 - 本地方法栈(Native 方法)中引用的对象
@@ -101,7 +101,7 @@ JDK 6 Update 24 之后，规则变为只要老年代的连续空间大于新生�
 无论是通过引用计数法判断对象引用数量，还是通过可达性分析法判断对象的引用链是否可达，判定对象的存活都与“引用”有关。
 JDK1.2 之前，Java 中引用的定义很传统：如果 reference 类型的数据存储的数值代表的是另一块内存的起始地址，就称这块内存代表一个引用。
 JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引用、软引用、弱引用、虚引用四种（引用强度逐渐减弱）
-![Java 引用类型总结](https://oss.javaguide.cn/github/javaguide/java/jvm/java-reference-type.png)
+![image/3cac66a25a0fca86f6b34dbeb799ceae_MD5.png](/img/user/image/3cac66a25a0fca86f6b34dbeb799ceae_MD5.png)
 **1．强引用（StrongReference）**
 以前我们使用的大部分引用实际上都是强引用，这是使用最普遍的引用。如果一个对象具有强引用，那就类似于**必不可少的生活用品**，垃圾回收器绝不会回收它。当内存空间不足，Java 虚拟机宁愿抛出 OutOfMemoryError 错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足问题。
 **2．软引用（SoftReference）**
@@ -133,20 +133,20 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 它是最基础的收集算法，后续的算法都是对其不足进行改进得到。这种垃圾收集算法会带来两个明显的问题：
 1. **效率问题**：标记和清除两个过程效率都不高。
 2. **空间问题**：标记清除后会产生大量不连续的内存碎片。
-![标记-清除算法](https://oss.javaguide.cn/github/javaguide/java/jvm/mark-and-sweep-garbage-collection-algorithm.png)
+![image/4d263d7b354335cd1a32632861132bf9_MD5.png](/img/user/image/4d263d7b354335cd1a32632861132bf9_MD5.png)
 整个标记-清除过程大致是这样的：
 1. 当一个对象被创建时，给一个标记位，假设为 0 (false)；
 2. 在标记阶段，我们将所有可达对象（或用户可以引用的对象）的标记位设置为 1 (true)；
 3. 扫描阶段清除的就是标记位为 0 (false)的对象。
 ### 复制算法
 为了解决标记-清除算法的效率和内存碎片问题，复制（Copying）收集算法出现了。它可以将内存分为大小相同的两块，每次使用其中的一块。当这一块的内存使用完后，就将还存活的对象复制到另一块去，然后再把使用的空间一次清理掉。这样就使每次的内存回收都是对内存区间的一半进行回收。
-![复制算法](https://oss.javaguide.cn/github/javaguide/java/jvm/copying-garbage-collection-algorithm.png)
+![image/ef98c74ffc1ea0fddd6f91ef63ee574e_MD5.png](/img/user/image/ef98c74ffc1ea0fddd6f91ef63ee574e_MD5.png)
 虽然改进了标记-清除算法，但依然存在下面这些问题：
 - **可用内存变小**：可用内存缩小为原来的一半。
 - **不适合老年代**：如果存活对象数量比较大，复制性能会变得很差。
 ### 标记-整理算法
 标记-整理（Mark-and-Compact）算法是根据老年代的特点提出的一种标记算法，标记过程仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象回收，而是让所有存活的对象向一端移动，然后直接清理掉端边界以外的内存。
-![标记-整理算法](https://oss.javaguide.cn/github/javaguide/java/jvm/mark-and-compact-garbage-collection-algorithm.png)
+![image/3be824b2a60f69e0f262860f5da1a519_MD5.png](/img/user/image/3be824b2a60f69e0f262860f5da1a519_MD5.png)
 由于多了整理这一步，因此效率也不高，适合老年代这种垃圾回收频率不是很高的场景。
 ### 分代收集算法
 分代收集算法是一种垃圾收集的策略，根据对象的生命周期将内存分为不同的代，主要分为新生代和老年代。这种策略的核心思想是根据各个年代的特点选择合适的垃圾收集算法，以提高垃圾收集的效率。
@@ -173,11 +173,11 @@ JDK 默认垃圾收集器（使用 `java -XX:+PrintCommandLineFlags -version` �
 - **算法选择：**
   - **新生代**版：标记-复制算法。
   - 老年代版：标记-整理算法。
-![Serial 收集器](https://oss.javaguide.cn/github/javaguide/java/jvm/serial-garbage-collector.png)
+![image/8e4398326b508b3bb7a2fbce21e52149_MD5.png](/img/user/image/8e4398326b508b3bb7a2fbce21e52149_MD5.png)
 
 ### Serial Old 收集器
 Serial Old是Serial收集器的**老年代版本**，在jdk1.5之前的版本与Parallel收集器搭配使用，或者作为CMS收集器的备选方案。
-![Serial 收集器](https://oss.javaguide.cn/github/javaguide/java/jvm/serial-garbage-collector.png)
+![image/8e4398326b508b3bb7a2fbce21e52149_MD5.png](/img/user/image/8e4398326b508b3bb7a2fbce21e52149_MD5.png)
 
 ### ParNew 收集器
 - **特点：**
@@ -187,7 +187,7 @@ Serial Old是Serial收集器的**老年代版本**，在jdk1.5之前的版本与
 - **算法：**
   - 属于新生代收集器，使用标记-复制算法，老年代一般配合CMS或者serial Old使用。
 
-![ParNew 收集器](https://oss.javaguide.cn/github/javaguide/java/jvm/parnew-garbage-collector.png)
+![image/891b2e1d86770c3232e9912a28dad441_MD5.png](/img/user/image/891b2e1d86770c3232e9912a28dad441_MD5.png)
 **并行和并发概念补充：**
 - **并行（Parallel）**：指多条垃圾收集线程并行工作，但此时用户线程仍然处于等待状态。
 - **并发（Concurrent）**：指用户线程与垃圾收集线程同时执行（但不一定是并行，可能会交替执行），用户程序在继续运行，而垃圾收集器运行在另一个 CPU 上。
@@ -199,7 +199,7 @@ Serial Old是Serial收集器的**老年代版本**，在jdk1.5之前的版本与
 - **算法：**
   - **新生代**版本：标记-复制算法。
   - 老年代版本：标记-整理算法。
-![Parallel Scavenge 收集器](https://oss.javaguide.cn/github/javaguide/java/jvm/parallel-scavenge-garbage-collector.png)
+![image/ad77642dc2ce02c438b9741eae830a21_MD5.png](/img/user/image/ad77642dc2ce02c438b9741eae830a21_MD5.png)
 #### 常见参数：
 1.  **`-XX:MaxGCPauseMillis`：** 用于指定期望的最大垃圾收集停顿时间（毫秒）。Parallel Scavenge会尽量控制停顿时间在这个范围内。
 2.  **`-XX:GCTimeRatio`：** 设置垃圾收集时间占总时间的比率。例如，设置为4表示垃圾收集时间占总时间的1/4。该参数与`-XX:MaxGCPauseMillis`一起用于自适应调节。
@@ -215,7 +215,7 @@ Serial Old是Serial收集器的**老年代版本**，在jdk1.5之前的版本与
 
 ### Parallel Old 收集器
 **Parallel Scavenge 收集器的老年代版本**。使用多线程和“标记-整理”算法。在注重吞吐量以及 CPU 资源的场合，都可以优先考虑 Parallel Scavenge 收集器和 Parallel Old 收集器。
-![Parallel Old收集器运行示意图](https://oss.javaguide.cn/github/javaguide/java/jvm/parallel-scavenge-garbage-collector.png)
+![image/ad77642dc2ce02c438b9741eae830a21_MD5.png](/img/user/image/ad77642dc2ce02c438b9741eae830a21_MD5.png)
 
 ### CMS 收集器 #四星
 - [[日常记录/杂项/深入理解JAVA虚拟机#CMS收集器\|深入理解JAVA虚拟机#CMS收集器]]
@@ -231,7 +231,7 @@ Serial Old是Serial收集器的**老年代版本**，在jdk1.5之前的版本与
 
 其中**并发标记阶段**就是从GC Roots 的直接关联对象开始遍历整个对象图的过程，这个过程耗时较长但是不需要停顿用户线程，可以与垃圾收集线程一起并发运行；
 
-![CMS 收集器](https://oss.javaguide.cn/github/javaguide/java/jvm/cms-garbage-collector.png)
+![image/3096fa807a2d40fbc789e4fa7041f02a_MD5.png](/img/user/image/3096fa807a2d40fbc789e4fa7041f02a_MD5.png)
 CMS主要优点是：**并发收集、低停顿**。但是它有下面三个明显的缺点：[[日常记录/杂项/CMS收集器的缺点\|CMS收集器的缺点]]
 - 对 CPU 资源敏感；在并发阶段虽然不会导致用户线程停顿，但是会因为占用了一部分线程使应用程序变慢。
 - 无法处理浮动垃圾；在最后并发清理过程中，用户线程执行也会产生垃圾，但是这部分垃圾是在标记之后，所以只有等到下一次gc的时候清理掉。
@@ -255,7 +255,7 @@ G1 (Garbage-First) 收集器是一款面向服务器的垃圾收集器，主要�
 2. **并发标记：** 与用户线程同时进行，进行可达性分析。g1收集器会对堆内存进行并发标记，找出所有存活的对象，并记录它们所在的Region。
 3. **最终标记：** 短暂暂停用户线程，修正并发标记期间由于用户程序继续运行而导致标记变动的对象标记记录。
 4. **筛选回收：** 负责更新Region的统计数据，对各个Region的回收价值和成本进行排序，根据用户所期望的停顿时间来制定回收计划。
-![G1 收集器](https://oss.javaguide.cn/github/javaguide/java/jvm/g1-garbage-collector.png)
+![image/3b31ed86db961e2fb64e8238445e38fc_MD5.png](/img/user/image/3b31ed86db961e2fb64e8238445e38fc_MD5.png)
 G1 收集器在后台维护了一个优先列表，在每次根据允许的收集时间内，优先选择回收价值最大的 Region，这就是“Garbage-First”名称的由来。这种使用 Region 划分内存空间以及有优先级的区域回收方式，保证了 G1 收集器在有限时间内可以尽可能高的收集效率（把内存化整为零）。
 从 JDK9 开始，G1 **垃圾收集器成为了默认的垃圾收集器**。
 
