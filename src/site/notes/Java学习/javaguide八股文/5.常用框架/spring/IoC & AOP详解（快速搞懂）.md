@@ -29,7 +29,7 @@ IoC （Inversion of Control ）即控制反转/反转控制。它是一种思想
 - **控制** ：指的是对象创建（实例化、管理）的权力
 - **反转** ：控制权交给外部环境（IoC 容器）
 
-![IoC 图解](https://oss.javaguide.cn/java-guide-blog/frc-365faceb5697f04f31399937c059c162.png)
+![image/527b8862efa64b0bad4a92aef8236d19_MD5.png](/img/user/image/527b8862efa64b0bad4a92aef8236d19_MD5.png)
 
 ### IoC 解决了什么问题?
 
@@ -42,17 +42,17 @@ IoC 的思想就是两方之间不互相依赖，由第三方容器来管理相�
 
 在没有使用 IoC 思想的情况下，Service 层想要使用 Dao 层的具体实现的话，需要通过 new 关键字在`UserServiceImpl` 中手动 new 出 `IUserDao` 的具体实现类 `UserDaoImpl`（不能直接 new 接口类）。
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/ioc-kfji3.png)
+![image/905c2ddb17d3ca67dc46fb478bbf2281_MD5.png](/img/user/image/905c2ddb17d3ca67dc46fb478bbf2281_MD5.png)
 
 很完美，这种方式也是可以实现的，但是我们想象一下如下场景：
 
 开发过程中突然接到一个新的需求，针对对`IUserDao` 接口开发出另一个具体实现类。因为 Server 层依赖了`IUserDao`的具体实现，所以我们需要修改`UserServiceImpl`中 new 的对象。如果只有一个类引用了`IUserDao`的具体实现，可能觉得还好，修改起来也不是很费力气，但是如果有许许多多的地方都引用了`IUserDao`的具体实现的话，一旦需要更换`IUserDao` 的实现方式，那修改起来将会非常的头疼。
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/why-ioc.png)
+![image/50e0b79fdc7f6ba7da1985702d76315c_MD5.png](/img/user/image/50e0b79fdc7f6ba7da1985702d76315c_MD5.png)
 
 使用 IoC 的思想，我们将对象的控制权（创建、管理）交有 IoC 容器去管理，我们在使用的时候直接向 IoC 容器 “要” 就可以了
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/why-ioc-2.png)
+![image/1aca0bbe519b72f19b0cc3d160184233_MD5.png](/img/user/image/1aca0bbe519b72f19b0cc3d160184233_MD5.png)
 
 ### IoC 和 DI 有区别吗？
 
@@ -62,7 +62,7 @@ IoC 最常见以及最合理的实现方式叫做依赖注入（Dependency Injec
 
 老马（Martin Fowler）在一篇文章中提到将 IoC 改名为 DI，原文如下，原文地址：<https://martinfowler.com/articles/injection.html> 。
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/martin-fowler-injection.png)
+![image/4c37ca34b2464884bcb46575063a6a6d_MD5.png](/img/user/image/4c37ca34b2464884bcb46575063a6a6d_MD5.png)
 
 老马的大概意思是 IoC 太普遍并且不表意，很多人会因此而迷惑，所以，使用 DI 来精确指名这个模式比较好。
 
@@ -95,7 +95,7 @@ OOP 不能很好地处理一些分散在多个类或对象中的公共行为（�
 
 AOP 可以将横切关注点（如日志记录、事务管理、权限控制、接口限流、接口幂等等）从**核心业务逻辑（core concerns，核心关注点）**中分离出来，实现关注点的分离。
 
-![](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/crosscut-logic-and-businesslogic-separation%20%20%20%20%20%20.png)
+![image/7bc468dd258d2358b46d361521f6154a_MD5.png](/img/user/image/7bc468dd258d2358b46d361521f6154a_MD5.png)
 
 以日志记录为例进行介绍，假如我们需要对某些方法进行统一格式的日志记录，没有使用 AOP 技术之前，我们需要挨个写日志记录的逻辑代码，全是重复的的逻辑。
 
@@ -195,7 +195,7 @@ AOP 的常见实现方式有动态代理、字节码操作等方式。
 
 Spring AOP 就是基于动态代理的，如果要代理的对象，实现了某个接口，那么 Spring AOP 会使用 **JDK Proxy**，去创建代理对象，而对于没有实现接口的对象，就无法使用 JDK Proxy 去进行代理了，这时候 Spring AOP 会使用 **Cglib** 生成一个被代理对象的子类来作为代理，如下图所示：
 
-![SpringAOPProcess](https://oss.javaguide.cn/github/javaguide/system-design/framework/spring/230ae587a322d6e4d09510161987d346.jpeg)
+![image/2cf92810693cf6eefe5804a8ac9a5e42_MD5.jpg](/img/user/image/2cf92810693cf6eefe5804a8ac9a5e42_MD5.jpg)
 
 当然你也可以使用 **AspectJ** ！Spring AOP 已经集成了 AspectJ ，AspectJ 应该算的上是 Java 生态系统中最完整的 AOP 框架了。
 
