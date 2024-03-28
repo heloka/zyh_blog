@@ -209,10 +209,12 @@ body {
     display: block;
     margin: 0 auto;
 }
-pre[class*='language-'] {
-  padding: 0 !important;
-}
 .markdown-rendered pre code {
   padding: 15px;
 }
+pre[class*='language-'] {
+  padding: 0 !important;
+}
+
+
 
