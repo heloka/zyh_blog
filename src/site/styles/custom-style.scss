@@ -205,4 +205,14 @@ body {
 // body:not(.native-scrollbars) {
 //     overflow: hidden;
 // }
+.markdown-preview-view img, .markdown-rendered img{
+    display: block;
+    margin: 0 auto;
+}
+pre[class*='language-'] {
+  padding: 0 !important;
+}
+.markdown-rendered pre code {
+  padding: 15px;
+}
 
