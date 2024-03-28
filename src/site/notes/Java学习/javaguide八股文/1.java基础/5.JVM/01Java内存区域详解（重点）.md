@@ -18,10 +18,10 @@ Java 虚拟机在执行程序时，将所管理的内存划分成若干个不同
 
 JDK 1.8 和之前的版本略有不同，我们这里以 JDK 1.7 和 JDK 1.8 这两个版本为例介绍。
 **JDK 1.7**：
-![Java 运行时数据区域（JDK1.7）](https://oss.javaguide.cn/github/javaguide/java/jvm/java-runtime-data-areas-jdk1.7.png)
+![image/f7b40044fc6085cba33dc0c3dc2f6e02_MD5.png](/img/user/image/f7b40044fc6085cba33dc0c3dc2f6e02_MD5.png)
 
 **JDK 1.8**：
-![Java 运行时数据区域（JDK1.8 ）](https://oss.javaguide.cn/github/javaguide/java/jvm/java-runtime-data-areas-jdk1.8.png)
+![image/ab4cc049a87fa739cc88a1c0fd9d7ff5_MD5.png](/img/user/image/ab4cc049a87fa739cc88a1c0fd9d7ff5_MD5.png)
 **线程私有的：**
 - **程序计数器**，用于记录当前线程执行的字节码指令地址。
 - **虚拟机栈**，用于存储局部变量、操作数栈、方法出口等信息。
@@ -47,16 +47,16 @@ JDK 1.8 和之前的版本略有不同，我们这里以 JDK 1.7 和 JDK 1.8 这
 - 除了Native方法以外的方法调用都是通过栈来实现的。
 - 方法调用的数据需要通过栈进行传递，每一次方法调用都会有一个对应的栈帧被压入栈中，每一个方法调用结束后，都会有一个栈帧被弹出。
 - 栈由一个个栈帧组成，栈帧包括局部变量表、操作数栈、动态链接、方法返回地址。
-![Java 虚拟机栈](https://oss.javaguide.cn/github/javaguide/java/jvm/stack-area.png)
+![image/5fae915546c212a86c8a2a67f0918b56_MD5.png](/img/user/image/5fae915546c212a86c8a2a67f0918b56_MD5.png)
 
 **局部变量表** 主要存放了编译期可知的各种数据类型（boolean、byte、char、short、int、float、long、double）、对象引用（reference 类型，它可能是一个指向对象起始地址的引用指针，也可能是指向一个代表对象的句柄或其他与此对象相关的位置）。
-![局部变量表](https://oss.javaguide.cn/github/javaguide/java/jvm/local-variables-table.png)
+![image/18481ae3c2cfb809b6d68cf602c381b9_MD5.png](/img/user/image/18481ae3c2cfb809b6d68cf602c381b9_MD5.png)
 
 **操作数栈** 主要作为方法调用的中转站使用，用于存放方法执行过程中产生的中间计算结果。另外，计算过程中产生的临时变量也会放在操作数栈中。
 
 **动态链接** 主要服务一个方法需要**调用其他方法**的场景。
 Class 文件的常量池里保存有大量的符号引用，比如方法引用的符号引用。当一个方法要调用其他方法，需要将常量池中指向方法的符号引用**转化为其在内存地址中的直接引用。**
-![](https://oss.javaguide.cn/github/javaguide/jvmimage-20220331175738692.png)
+![image/84d9381eadc02ee29e4f69ea09173691_MD5.png](/img/user/image/84d9381eadc02ee29e4f69ea09173691_MD5.png)
 
 
 简单总结一下程序运行中栈可能会出现两种错误：
@@ -80,7 +80,7 @@ Java 堆是所有线程共享的内存区域，在虚拟机启动时创建。
 2. 老年代(Old Generation)
 3. 永久代(Permanent Generation)
 下图所示的 Eden 区、两个 Survivor 区 S0 和 S1 都属于新生代，中间一层属于老年代，最下面一层属于永久代。
-![堆内存结构](https://oss.javaguide.cn/github/javaguide/java/jvm/hotspot-heap-structure.png)
+![image/b4cef63524070616e83ad9a28a51c498_MD5.png](/img/user/image/b4cef63524070616e83ad9a28a51c498_MD5.png)
 
 而在JDK 8及之后，永久代被元空间取代，元空间使用的是本地内存。
 	- [[Java学习/javaguide八股文/1.java基础/5.JVM/01Java内存区域详解（重点）#方法区和永久代以及元空间是什么关系呢？ 四星\|01Java内存区域详解（重点）#方法区和永久代以及元空间是什么关系呢？ 四星]]
@@ -99,7 +99,7 @@ Java 堆是所有线程共享的内存区域，在虚拟机启动时创建。
 	- ps：这是逻辑定义，物理上静态变量和常量池已经存储在堆中了。
 #### **方法区和永久代以及元空间是什么关系呢？** #四星
 方法区和永久代以及元空间的关系可以理解为Java虚拟机对虚拟机规范中**方法区的两种实现方式**。并且永久代是 JDK 1.8 之前的方法区实现，JDK 1.8 及以后方法区的实现变成了元空间。
-![HotSpot 虚拟机方法区的两种实现](https://oss.javaguide.cn/github/javaguide/java/jvm/method-area-implementation.png)
+![image/a3cd3d801b66909cc57ccffd28aa2810_MD5.png](/img/user/image/a3cd3d801b66909cc57ccffd28aa2810_MD5.png)
 **为什么要将永久代 (PermGen) 替换为元空间 (MetaSpace) 呢?**
 1. **动态调整大小：** 永久代的大小是固定的，无法根据实际需要进行调整,容易导致内存溢出；**而元空间使用本地内存**，可以根据系统的实际可用内存动态调整大小。且元空间里面存放的是类的元数据，加载多少类的元数据而由系统的实际可用空间来控制，从而可以加载更多类的元数据。
 2. **简化垃圾回收：** 永久代的对象是通过Full GC进行垃圾回收的，也就是和老年代同时实现垃圾回收，替换为元空间后，简化了Full GC的过程，可以在不进行暂停的情况下去并发地释放类的数据，同时也提升了GC的性能。
@@ -143,8 +143,8 @@ System.out.println(aa==bb);// true
 HotSpot 虚拟机中字符串常量池的实现是 `StringTable` , 可以简单理解为一个固定大小的`HashTable` ，容量为 `StringTableSize`（可以通过 `-XX:StringTableSize` 参数来设置），保存的是字符串（key）和 字符串对象的引用（value）的映射关系，字符串对象的引用指向堆中的字符串对象。
 
 JDK1.7 之前，字符串常量池存放在永久代。从JDK1.7开始字符串常量池和静态变量从永久代移动了 Java 堆中。
-![method-area-jdk1.6](https://oss.javaguide.cn/github/javaguide/java/jvm/method-area-jdk1.6.png)
-![method-area-jdk1.7](https://oss.javaguide.cn/github/javaguide/java/jvm/method-area-jdk1.7.png)
+![image/b17252238b0342fdf09e33ed909990ff_MD5.png](/img/user/image/b17252238b0342fdf09e33ed909990ff_MD5.png)
+![image/c1b65ff4603e4ba74fe9f0452e4c5057_MD5.png](/img/user/image/c1b65ff4603e4ba74fe9f0452e4c5057_MD5.png)
 
 **JDK 1.7 为什么要将字符串常量池移动到堆中？**
 主要是因为永久代（方法区实现）的 GC 回收效率太低，只有在整堆收集 (Full GC)的时候才会被执行 GC。Java 程序中通常会有大量的被创建的字符串等待回收，JDK1.7选择将字符串常量池放到堆中，能够更高效及时地回收字符串内存。
@@ -210,9 +210,9 @@ Java 程序通过栈上的 reference 数据来操作堆上的具体对象。对�
 #### 句柄
    - 在Java堆中划分一块内存作为句柄池，reference中**存储的是对象的句柄地址**， 句柄中包含对象实例数据与对象类型数据各自的具体地址信息。
    - 优势： reference 中存储的是稳定的句柄地址，在对象移动时，只需修改句柄中的实例数据指针，reference本身不需修改。
-![对象的访问定位-使用句柄](https://oss.javaguide.cn/github/javaguide/java/jvm/access-location-of-object-handle.png)
+![image/e919c5ddbb8e0ac52a89899f9b3d4145_MD5.png](/img/user/image/e919c5ddbb8e0ac52a89899f9b3d4145_MD5.png)
 #### 直接指针
 - reference中直接存储对象的地址。
 - 优势：速度较快，省去一次指针定位的时间开销。
 - HotSpot虚拟机主要使用这种方式进行对象访问。
-![对象的访问定位-直接指针](https://oss.javaguide.cn/github/javaguide/java/jvm/access-location-of-object-handle-direct-pointer.png)
+![image/f66facd6ae1427428544b7676b18f862_MD5.png](/img/user/image/f66facd6ae1427428544b7676b18f862_MD5.png)
